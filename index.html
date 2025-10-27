@@ -1,0 +1,131 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Crypto Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2l3.5 6h6.5l-5.25 4.25L18.5 22 12 17.75 5.5 22l1.75-9.75L2 8h6.5z" />
+        </svg>
+      </div>
+      <h1>Crypto Dash</h1>
+    </div>
+
+    <div class="actions">
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="Search coins..." />
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79L20 21.5 21.5 20 15.5 14zM9.5 14C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg>
+      </div>
+
+      <select id="currencySelect" class="select">
+        <option value="USD">$ USD</option>
+        <option value="EUR">€ EUR</option>
+        <option value="INR">₹ INR</option>
+      </select>
+
+      <button id="themeToggle" class="ghost" aria-label="Toggle theme">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- KPI Cards -->
+    <section class="cards">
+      <div class="card kpi" id="kpiTotal">
+        <div class="kpi-title">Total Value</div>
+        <div class="kpi-value" id="totalValue">$0</div>
+        <div class="kpi-sub" id="totalChange">0% 24h</div>
+      </div>
+      <div class="card kpi" id="kpiPnl">
+        <div class="kpi-title">24h P/L</div>
+        <div class="kpi-value" id="pnlValue">$0</div>
+        <div class="kpi-sub soft" id="pnlHint">vs yesterday</div>
+      </div>
+      <div class="card kpi" id="kpiBest">
+        <div class="kpi-title">Best Performer</div>
+        <div class="kpi-value" id="bestName">—</div>
+        <div class="kpi-sub" id="bestChange">—</div>
+      </div>
+      <div class="card kpi" id="kpiWorst">
+        <div class="kpi-title">Worst Performer</div>
+        <div class="kpi-value" id="worstName">—</div>
+        <div class="kpi-sub" id="worstChange">—</div>
+      </div>
+    </section>
+
+    <!-- Allocation -->
+    <section class="card allocation">
+      <div class="section-head">
+        <h2>Portfolio Allocation</h2>
+        <button id="rebalanceBtn" class="tiny ghost">Rebalance (mock)</button>
+      </div>
+      <div class="alloc-wrap">
+        <div class="donut" id="donut"></div>
+        <ul class="legend" id="legend"></ul>
+      </div>
+    </section>
+
+    <!-- Watchlist -->
+    <section class="card" id="watchlistPanel">
+      <div class="section-head">
+        <h2>Watchlist</h2>
+      </div>
+      <ul class="watchlist" id="watchlist"></ul>
+    </section>
+
+    <!-- Market Table -->
+    <section class="card table">
+      <div class="section-head">
+        <h2>Market</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="name">Name</th>
+              <th data-sort="price" class="right">Price</th>
+              <th data-sort="change" class="right">24h</th>
+              <th class="right">Spark</th>
+              <th data-sort="holding" class="right">Holdings</th>
+              <th data-sort="value" class="right">Value</th>
+              <th class="center">Watch</th>
+            </tr>
+          </thead>
+          <tbody id="marketBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Activity / Transactions -->
+    <section class="card">
+      <div class="section-head">
+        <h2>Activity</h2>
+      </div>
+
+      <form id="txForm" class="tx-form">
+        <select id="txCoin" required></select>
+        <input id="txQty" type="number" step="0.0001" placeholder="Qty (+buy, -sell)" required />
+        <input id="txPrice" type="number" step="0.01" placeholder="Price (optional)" />
+        <button type="submit" class="primary">Add</button>
+      </form>
+
+      <ul class="activity" id="activity"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Local demo • No external APIs • Built for performance and polish</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
